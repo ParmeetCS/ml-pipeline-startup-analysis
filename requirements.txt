@@ -8,4 +8,4 @@ xgboost
 setuptools
 Flask 
 dill
--e .
+-e . 
