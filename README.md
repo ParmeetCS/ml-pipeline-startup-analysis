@@ -18,13 +18,18 @@ graph TD
     K[EDA Notebook] -.->|Data Analysis| C
     L[Model Training Notebook] -.->|Experiment| E
     
-    style A fill:#e1f5ff
-    style B fill:#e1f5ff
-    style C fill:#e1f5ff
-    style E fill:#fff3e0
-    style G fill:#f3e5f5
-    style H fill:#e8f5e9
-    style J fill:#e8f5e9
+    style A fill:#0277bd,stroke:#01579b,stroke-width:2px,color:#fff
+    style B fill:#0277bd,stroke:#01579b,stroke-width:2px,color:#fff
+    style C fill:#0277bd,stroke:#01579b,stroke-width:2px,color:#fff
+    style D fill:#01579b,stroke:#01579b,stroke-width:2px,color:#fff
+    style E fill:#e65100,stroke:#bf360c,stroke-width:2px,color:#fff
+    style F fill:#e65100,stroke:#bf360c,stroke-width:2px,color:#fff
+    style G fill:#6a1b9a,stroke:#4a148c,stroke-width:2px,color:#fff
+    style H fill:#00695c,stroke:#004d40,stroke-width:2px,color:#fff
+    style I fill:#1565c0,stroke:#0d47a1,stroke-width:2px,color:#fff
+    style J fill:#00695c,stroke:#004d40,stroke-width:2px,color:#fff
+    style K fill:#7986cb,stroke:#3f51b5,stroke-width:2px,color:#fff
+    style L fill:#7986cb,stroke:#3f51b5,stroke-width:2px,color:#fff
 ```
 
 ## Project Structure
