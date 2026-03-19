@@ -253,16 +253,3 @@ Note:
 
 ---
 
-## 14) Suggested Improvements
-
-- Persist class encoder with model artifact
-- Add confidence/probability scores in UI
-- Add automated tests for pipeline and routes
-- Add API endpoint for JSON prediction
-- Add Docker support for one-command deployment
-
----
-
-## 15) License
-
-Add your project license here (MIT, Apache-2.0, etc.) if needed.
