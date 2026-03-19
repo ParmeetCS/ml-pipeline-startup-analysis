@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Startup Success Predictor</title>
+	<style>
+		:root {
+			--bg: #f4f7ff;
+			--card: #ffffff;
+			--text: #0f172a;
+			--muted: #475569;
+			--primary: #2563eb;
+			--primary-dark: #1d4ed8;
+			--accent: #0ea5e9;
+			--border: #dbe3f0;
+		}
+
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			background: radial-gradient(circle at top right, #dbeafe 0%, var(--bg) 40%, #eef2ff 100%);
+			color: var(--text);
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 24px;
+		}
+
+		.container {
+			width: 100%;
+			max-width: 980px;
+			background: var(--card);
+			border: 1px solid var(--border);
+			border-radius: 20px;
+			box-shadow: 0 16px 45px rgba(15, 23, 42, 0.1);
+			overflow: hidden;
+			display: grid;
+			grid-template-columns: 1.2fr 1fr;
+		}
+
+		.left {
+			padding: 48px;
+			background: linear-gradient(160deg, #eff6ff 0%, #e0e7ff 100%);
+		}
+
+		.badge {
+			display: inline-block;
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--primary);
+			background: #dbeafe;
+			border: 1px solid #bfdbfe;
+			padding: 6px 10px;
+			border-radius: 999px;
+			margin-bottom: 18px;
+		}
+
+		h1 {
+			font-size: 38px;
+			line-height: 1.15;
+			margin-bottom: 14px;
+		}
+
+		p {
+			color: var(--muted);
+			font-size: 16px;
+			line-height: 1.6;
+			margin-bottom: 24px;
+			max-width: 520px;
+		}
+
+		.points {
+			list-style: none;
+			display: grid;
+			gap: 12px;
+		}
+
+		.points li {
+			background: rgba(255, 255, 255, 0.72);
+			border: 1px solid #dbeafe;
+			border-radius: 12px;
+			padding: 12px 14px;
+			color: #1e293b;
+			font-size: 14px;
+		}
+
+		.right {
+			padding: 48px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 20px;
+		}
+
+		.card-title {
+			font-size: 24px;
+			font-weight: 700;
+		}
+
+		.card-text {
+			color: var(--muted);
+			line-height: 1.6;
+		}
+
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			width: 100%;
+			background: linear-gradient(120deg, var(--primary), var(--accent));
+			color: #ffffff;
+			border: none;
+			border-radius: 12px;
+			padding: 14px 16px;
+			font-weight: 600;
+			font-size: 15px;
+			transition: transform 0.15s ease, box-shadow 0.2s ease;
+			box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+		}
+
+		.btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 14px 28px rgba(37, 99, 235, 0.3);
+			background: linear-gradient(120deg, var(--primary-dark), var(--accent));
+		}
+
+		.hint {
+			font-size: 13px;
+			color: #64748b;
+		}
+
+		@media (max-width: 900px) {
+			.container {
+				grid-template-columns: 1fr;
+			}
+
+			.left,
+			.right {
+				padding: 30px;
+			}
+
+			h1 {
+				font-size: 30px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="container">
+		<section class="left">
+			<span class="badge">ML Pipeline</span>
+			<h1>Startup Success Prediction</h1>
+			<p>
+				Estimate startup outcome using funding metrics, traction, market indicators,
+				investor type, and founder profile from your trained machine learning model.
+			</p>
+			<ul class="points">
+				<li>Input business and founder signals in a structured form.</li>
+				<li>Generate model prediction instantly from your Flask app.</li>
+				<li>Use outcomes to guide strategy and risk assessment.</li>
+			</ul>
+		</section>
+
+		<section class="right">
+			<h2 class="card-title">Run a Prediction</h2>
+			<p class="card-text">
+				Open the prediction page, provide startup attributes, and submit for a success outcome.
+			</p>
+			<a class="btn" href="/predictdata">Open Predictor</a>
+			<p class="hint">Route: <strong>/predictdata</strong></p>
+		</section>
+	</main>
+</body>
+</html>

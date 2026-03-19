@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Startup Predictor Form</title>
+	<style>
+		:root {
+			--bg: #f1f5ff;
+			--card: #ffffff;
+			--text: #0f172a;
+			--muted: #475569;
+			--primary: #2563eb;
+			--primary-dark: #1d4ed8;
+			--border: #dbe3f0;
+			--input-bg: #f8fbff;
+			--ok-bg: #ecfdf3;
+			--ok-text: #166534;
+		}
+
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			background: linear-gradient(180deg, #dbeafe 0%, var(--bg) 25%, #eef2ff 100%);
+			color: var(--text);
+			min-height: 100vh;
+			padding: 28px 16px;
+		}
+
+		.wrapper {
+			max-width: 1080px;
+			margin: 0 auto;
+		}
+
+		.topbar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 12px;
+			margin-bottom: 16px;
+		}
+
+		.title {
+			font-size: 30px;
+			line-height: 1.2;
+		}
+
+		.subtitle {
+			color: var(--muted);
+			margin-top: 6px;
+			font-size: 15px;
+		}
+
+		.back-link {
+			text-decoration: none;
+			color: var(--primary);
+			font-weight: 600;
+			font-size: 14px;
+		}
+
+		.card {
+			background: var(--card);
+			border: 1px solid var(--border);
+			border-radius: 18px;
+			box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+			padding: 24px;
+		}
+
+		form {
+			display: grid;
+			gap: 16px;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 14px;
+		}
+
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		label {
+			font-size: 13px;
+			color: #1e293b;
+			font-weight: 600;
+		}
+
+		input,
+		select {
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			padding: 11px 12px;
+			background: var(--input-bg);
+			font-size: 14px;
+			color: var(--text);
+			outline: none;
+		}
+
+		input:focus,
+		select:focus {
+			border-color: #93c5fd;
+			box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+			background: #ffffff;
+		}
+
+		.full {
+			grid-column: span 2;
+		}
+
+		.actions {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			margin-top: 4px;
+		}
+
+		.btn {
+			border: none;
+			border-radius: 10px;
+			padding: 12px 18px;
+			background: linear-gradient(120deg, var(--primary), #0ea5e9);
+			color: #fff;
+			font-weight: 600;
+			cursor: pointer;
+			font-size: 14px;
+		}
+
+		.btn:hover {
+			background: linear-gradient(120deg, var(--primary-dark), #0284c7);
+		}
+
+		.note {
+			color: #64748b;
+			font-size: 13px;
+		}
+
+		.result {
+			margin-top: 16px;
+			border: 1px solid #bbf7d0;
+			background: var(--ok-bg);
+			color: var(--ok-text);
+			border-radius: 12px;
+			padding: 12px 14px;
+			font-size: 15px;
+			font-weight: 600;
+		}
+
+		.result-meta {
+			margin-top: 6px;
+			font-size: 13px;
+			font-weight: 500;
+			opacity: 0.9;
+		}
+
+		.error {
+			margin-top: 16px;
+			border: 1px solid #fecaca;
+			background: #fef2f2;
+			color: #991b1b;
+			border-radius: 12px;
+			padding: 12px 14px;
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 1.5;
+		}
+
+		@media (max-width: 900px) {
+			.grid {
+				grid-template-columns: 1fr;
+			}
+
+			.full {
+				grid-column: span 1;
+			}
+
+			.title {
+				font-size: 24px;
+			}
+
+			.topbar {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<header class="topbar">
+			<div>
+				<h1 class="title">Startup Success Predictor</h1>
+				<p class="subtitle">Provide startup and founder details to predict outcome.</p>
+			</div>
+			<a class="back-link" href="/">← Back to Home</a>
+		</header>
+
+		<section class="card">
+			<form action="/predictdata" method="post">
+				<div class="grid">
+					<div class="field">
+						<label for="funding_rounds">Funding Rounds</label>
+						<input type="number" id="funding_rounds" name="funding_rounds" min="0" required>
+					</div>
+
+					<div class="field">
+						<label for="founder_experience_years">Founder Experience (Years)</label>
+						<input type="number" id="founder_experience_years" name="founder_experience_years" min="0" required>
+					</div>
+
+					<div class="field">
+						<label for="team_size">Team Size</label>
+						<input type="number" id="team_size" name="team_size" min="1" required>
+					</div>
+
+					<div class="field">
+						<label for="market_size_billion">Market Size (Billion)</label>
+						<input type="number" id="market_size_billion" name="market_size_billion" step="0.01" min="0" required>
+					</div>
+
+					<div class="field">
+						<label for="product_traction_users">Product Traction (Users)</label>
+						<input type="number" id="product_traction_users" name="product_traction_users" min="0" required>
+					</div>
+
+					<div class="field">
+						<label for="burn_rate_million">Burn Rate (Million)</label>
+						<input type="number" id="burn_rate_million" name="burn_rate_million" step="0.01" min="0" required>
+					</div>
+
+					<div class="field">
+						<label for="revenue_million">Revenue (Million)</label>
+						<input type="number" id="revenue_million" name="revenue_million" step="0.01" min="0" required>
+					</div>
+
+					<div class="field">
+						<label for="investor_type">Investor Type</label>
+						<select id="investor_type" name="investor_type" required>
+							<option value="" disabled selected>Select investor type</option>
+							<option value="none">None</option>
+							<option value="angel">Angel</option>
+							<option value="tier1_vc">Tier 1 VC</option>
+							<option value="tier2_vc">Tier 2 VC</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label for="sector">Sector</label>
+						<select id="sector" name="sector" required>
+							<option value="" disabled selected>Select sector</option>
+							<option value="AI">AI</option>
+							<option value="SaaS">SaaS</option>
+							<option value="Fintech">Fintech</option>
+							<option value="Health">Health</option>
+							<option value="Ecommerce">Ecommerce</option>
+							<option value="Climate">Climate</option>
+							<option value="Crypto">Crypto</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label for="founder_background">Founder Background</label>
+						<select id="founder_background" name="founder_background" required>
+							<option value="" disabled selected>Select founder background</option>
+							<option value="first_time">First-Time Founder</option>
+							<option value="serial_founder">Serial Founder</option>
+							<option value="ex_bigtech">Ex-BigTech</option>
+							<option value="academic">Academic</option>
+						</select>
+					</div>
+
+					<div class="field full actions">
+						<button class="btn" type="submit">Predict Outcome</button>
+						<span class="note">All fields are required.</span>
+					</div>
+				</div>
+			</form>
+
+			{% if results is defined %}
+			<div class="result">
+				Predicted Outcome: {{ results }}
+				{% if raw_prediction is defined %}
+				<div class="result-meta">
+					Model class code: {{ raw_prediction }}
+				</div>
+				{% endif %}
+			</div>
+			{% endif %}
+
+			{% if error_message is defined %}
+			<div class="error">
+				{{ error_message }}
+			</div>
+			{% endif %}
+		</section>
+	</div>
+</body>
+</html>
