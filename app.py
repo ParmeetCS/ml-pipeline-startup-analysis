@@ -11,20 +11,21 @@ def index():
 @app.route('/predictdata',methods=['GET','POST'])
 def predict_datapoint():
     if request.method=='GET':
-        return render_template('home.html')
+        return render_template('home.html', form_data={})
     else:
+        form_data = request.form.to_dict()
         try:
             data = CustomData(
-                funding_rounds=int(request.form.get('funding_rounds')),
-                founder_experience_years=int(request.form.get('founder_experience_years')),
-                team_size=int(request.form.get('team_size')),
-                market_size_billion=float(request.form.get('market_size_billion')),
-                product_traction_users=int(request.form.get('product_traction_users')),
-                burn_rate_million=float(request.form.get('burn_rate_million')),
-                revenue_million=float(request.form.get('revenue_million')),
-                investor_type=request.form.get('investor_type'),
-                sector=request.form.get('sector'),
-                founder_background=request.form.get('founder_background')
+                funding_rounds=int(form_data.get('funding_rounds')),
+                founder_experience_years=int(form_data.get('founder_experience_years')),
+                team_size=int(form_data.get('team_size')),
+                market_size_billion=float(form_data.get('market_size_billion')),
+                product_traction_users=int(form_data.get('product_traction_users')),
+                burn_rate_million=float(form_data.get('burn_rate_million')),
+                revenue_million=float(form_data.get('revenue_million')),
+                investor_type=form_data.get('investor_type'),
+                sector=form_data.get('sector'),
+                founder_background=form_data.get('founder_background')
             )
             pred_df=data.get_data_as_data_frame()
             print(pred_df)
@@ -42,9 +43,9 @@ def predict_datapoint():
             }
             predicted_label=label_map.get(predicted_class,f"Unknown ({predicted_class})")
 
-            return render_template('home.html',results=predicted_label,raw_prediction=predicted_class)
+            return render_template('home.html',results=predicted_label,raw_prediction=predicted_class, form_data=form_data)
         except Exception as e:
-            return render_template('home.html',error_message=str(e))
+            return render_template('home.html',error_message=str(e), form_data=form_data)
 
 if __name__=="__main__":
     app.run(host="0.0.0.0")

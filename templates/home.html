@@ -208,72 +208,72 @@
 				<div class="grid">
 					<div class="field">
 						<label for="funding_rounds">Funding Rounds</label>
-						<input type="number" id="funding_rounds" name="funding_rounds" min="0" required>
+						<input type="number" id="funding_rounds" name="funding_rounds" min="0" value="{{ form_data.get('funding_rounds', '') }}" required>
 					</div>
 
 					<div class="field">
 						<label for="founder_experience_years">Founder Experience (Years)</label>
-						<input type="number" id="founder_experience_years" name="founder_experience_years" min="0" required>
+						<input type="number" id="founder_experience_years" name="founder_experience_years" min="0" value="{{ form_data.get('founder_experience_years', '') }}" required>
 					</div>
 
 					<div class="field">
 						<label for="team_size">Team Size</label>
-						<input type="number" id="team_size" name="team_size" min="1" required>
+						<input type="number" id="team_size" name="team_size" min="1" value="{{ form_data.get('team_size', '') }}" required>
 					</div>
 
 					<div class="field">
 						<label for="market_size_billion">Market Size (Billion)</label>
-						<input type="number" id="market_size_billion" name="market_size_billion" step="0.01" min="0" required>
+						<input type="number" id="market_size_billion" name="market_size_billion" step="0.01" min="0" value="{{ form_data.get('market_size_billion', '') }}" required>
 					</div>
 
 					<div class="field">
 						<label for="product_traction_users">Product Traction (Users)</label>
-						<input type="number" id="product_traction_users" name="product_traction_users" min="0" required>
+						<input type="number" id="product_traction_users" name="product_traction_users" min="0" value="{{ form_data.get('product_traction_users', '') }}" required>
 					</div>
 
 					<div class="field">
 						<label for="burn_rate_million">Burn Rate (Million)</label>
-						<input type="number" id="burn_rate_million" name="burn_rate_million" step="0.01" min="0" required>
+						<input type="number" id="burn_rate_million" name="burn_rate_million" step="0.01" min="0" value="{{ form_data.get('burn_rate_million', '') }}" required>
 					</div>
 
 					<div class="field">
 						<label for="revenue_million">Revenue (Million)</label>
-						<input type="number" id="revenue_million" name="revenue_million" step="0.01" min="0" required>
+						<input type="number" id="revenue_million" name="revenue_million" step="0.01" min="0" value="{{ form_data.get('revenue_million', '') }}" required>
 					</div>
 
 					<div class="field">
 						<label for="investor_type">Investor Type</label>
 						<select id="investor_type" name="investor_type" required>
-							<option value="" disabled selected>Select investor type</option>
-							<option value="none">None</option>
-							<option value="angel">Angel</option>
-							<option value="tier1_vc">Tier 1 VC</option>
-							<option value="tier2_vc">Tier 2 VC</option>
+							<option value="" disabled {% if not form_data.get('investor_type') %}selected{% endif %}>Select investor type</option>
+							<option value="none" {% if form_data.get('investor_type') == 'none' %}selected{% endif %}>None</option>
+							<option value="angel" {% if form_data.get('investor_type') == 'angel' %}selected{% endif %}>Angel</option>
+							<option value="tier1_vc" {% if form_data.get('investor_type') == 'tier1_vc' %}selected{% endif %}>Tier 1 VC</option>
+							<option value="tier2_vc" {% if form_data.get('investor_type') == 'tier2_vc' %}selected{% endif %}>Tier 2 VC</option>
 						</select>
 					</div>
 
 					<div class="field">
 						<label for="sector">Sector</label>
 						<select id="sector" name="sector" required>
-							<option value="" disabled selected>Select sector</option>
-							<option value="AI">AI</option>
-							<option value="SaaS">SaaS</option>
-							<option value="Fintech">Fintech</option>
-							<option value="Health">Health</option>
-							<option value="Ecommerce">Ecommerce</option>
-							<option value="Climate">Climate</option>
-							<option value="Crypto">Crypto</option>
+							<option value="" disabled {% if not form_data.get('sector') %}selected{% endif %}>Select sector</option>
+							<option value="AI" {% if form_data.get('sector') == 'AI' %}selected{% endif %}>AI</option>
+							<option value="SaaS" {% if form_data.get('sector') == 'SaaS' %}selected{% endif %}>SaaS</option>
+							<option value="Fintech" {% if form_data.get('sector') == 'Fintech' %}selected{% endif %}>Fintech</option>
+							<option value="Health" {% if form_data.get('sector') == 'Health' %}selected{% endif %}>Health</option>
+							<option value="Ecommerce" {% if form_data.get('sector') == 'Ecommerce' %}selected{% endif %}>Ecommerce</option>
+							<option value="Climate" {% if form_data.get('sector') == 'Climate' %}selected{% endif %}>Climate</option>
+							<option value="Crypto" {% if form_data.get('sector') == 'Crypto' %}selected{% endif %}>Crypto</option>
 						</select>
 					</div>
 
 					<div class="field">
 						<label for="founder_background">Founder Background</label>
 						<select id="founder_background" name="founder_background" required>
-							<option value="" disabled selected>Select founder background</option>
-							<option value="first_time">First-Time Founder</option>
-							<option value="serial_founder">Serial Founder</option>
-							<option value="ex_bigtech">Ex-BigTech</option>
-							<option value="academic">Academic</option>
+							<option value="" disabled {% if not form_data.get('founder_background') %}selected{% endif %}>Select founder background</option>
+							<option value="first_time" {% if form_data.get('founder_background') == 'first_time' %}selected{% endif %}>First-Time Founder</option>
+							<option value="serial_founder" {% if form_data.get('founder_background') == 'serial_founder' %}selected{% endif %}>Serial Founder</option>
+							<option value="ex_bigtech" {% if form_data.get('founder_background') == 'ex_bigtech' %}selected{% endif %}>Ex-BigTech</option>
+							<option value="academic" {% if form_data.get('founder_background') == 'academic' %}selected{% endif %}>Academic</option>
 						</select>
 					</div>
 
