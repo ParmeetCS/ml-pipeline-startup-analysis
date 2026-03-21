@@ -33,40 +33,40 @@ class ModelTrainer:
                 test_array[:,-1]
             )
             models={
-                "Logistic Regression": LogisticRegression(),
-                "Decision Tree": DecisionTreeClassifier(),
-                "Random Forest": RandomForestClassifier(),
-                "Gradient Boosting": GradientBoostingClassifier(),
-                "XGBoost": XGBClassifier()
+                "Logistic Regression": LogisticRegression(max_iter=1000),
+                "Decision Tree": DecisionTreeClassifier(random_state=42),
+                "Random Forest": RandomForestClassifier(random_state=42, n_jobs=-1),
+                "Gradient Boosting": GradientBoostingClassifier(random_state=42),
+                "XGBoost": XGBClassifier(random_state=42, n_jobs=-1, eval_metric='mlogloss', tree_method='hist')
             }
             params={
                 "Logistic Regression": {
-        'C': [0.01, 0.1, 1, 10, 100],
+        'C': [0.1, 1, 10],
             'solver': ['lbfgs']
     },
 
     "Decision Tree": {
         'criterion': ['gini', 'entropy', 'log_loss'],
-        'max_depth': [None, 5, 10, 20],
+        'max_depth': [None, 5, 10],
         'min_samples_split': [2, 5, 10]
     },
 
     "Random Forest": {
-        'n_estimators': [50, 100, 200],
+        'n_estimators': [50, 100],
         'max_depth': [None, 5, 10],
         'min_samples_split': [2, 5],
         'max_features': ['sqrt', 'log2']
     },
 
     "Gradient Boosting": {
-        'learning_rate': [0.01, 0.05, 0.1],
-        'n_estimators': [50, 100, 200],
+        'learning_rate': [0.05, 0.1],
+        'n_estimators': [50, 100],
         'subsample': [0.7, 0.8, 0.9]
     },
 
     "XGBoost": {
-        'learning_rate': [0.01, 0.05, 0.1],
-        'n_estimators': [50, 100, 200],
+        'learning_rate': [0.05, 0.1],
+        'n_estimators': [50, 100],
         'max_depth': [3, 5, 7]
     }
             }

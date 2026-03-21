@@ -3,7 +3,7 @@ import sys
 
 import pickle
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV
 from src.exception import CustomException
 
 def save_object(file_path,obj):
@@ -21,9 +21,17 @@ def evaluate_models(X_Train,Y_Train,X_Test,Y_Test,models,param):
        report={}
        for model_name,model in models.items():
            para=param[model_name]
-           gs=GridSearchCV(model,para,cv=3,scoring='accuracy')
-           gs.fit(X_Train,Y_Train)
-           model.set_params(**gs.best_params_)
+           search = RandomizedSearchCV(
+               estimator=model,
+               param_distributions=para,
+               n_iter=8,
+               cv=3,
+               scoring='accuracy',
+               n_jobs=-1,
+               random_state=42
+           )
+           search.fit(X_Train,Y_Train)
+           model.set_params(**search.best_params_)
            model.fit(X_Train, Y_Train)
            y_train_pred = model.predict(X_Train)
            y_test_pred = model.predict(X_Test)
