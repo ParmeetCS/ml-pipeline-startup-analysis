@@ -16,22 +16,23 @@ def save_object(file_path,obj):
     except Exception as e:
         raise CustomException(e,sys)
 
-def evaluate_models(X_Train,Y_Train,X_Test,Y_Test,models,param):
+def evaluate_models(X_Train,Y_Train,X_Test,Y_Test,models,param,use_search=False):
     try:
        report={}
        for model_name,model in models.items():
            para=param[model_name]
-           search = RandomizedSearchCV(
-               estimator=model,
-               param_distributions=para,
-               n_iter=8,
-               cv=3,
-               scoring='accuracy',
-               n_jobs=-1,
-               random_state=42
-           )
-           search.fit(X_Train,Y_Train)
-           model.set_params(**search.best_params_)
+           if use_search:
+               search = RandomizedSearchCV(
+                   estimator=model,
+                   param_distributions=para,
+                   n_iter=5,
+                   cv=2,
+                   scoring='accuracy',
+                   n_jobs=1,
+                   random_state=42
+               )
+               search.fit(X_Train,Y_Train)
+               model.set_params(**search.best_params_)
            model.fit(X_Train, Y_Train)
            y_train_pred = model.predict(X_Train)
            y_test_pred = model.predict(X_Test)
